@@ -4,7 +4,8 @@
   "description": "A place to enjoy pizzas",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,8 @@
   },
   "devDependencies": {
     "mocha": "^2.3.4"
+  },
+  "directories": {
+    "test": "test"
   }
 }
