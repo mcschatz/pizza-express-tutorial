@@ -1,0 +1,29 @@
+{
+  "name": "pizza",
+  "version": "1.0.0",
+  "description": "A place to enjoy pizzas",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcschatz/pizza-express-tutorial.git"
+  },
+  "keywords": [
+    "express",
+    "pizza"
+  ],
+  "author": "Mimi Schatz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcschatz/pizza-express-tutorial/issues"
+  },
+  "homepage": "https://github.com/mcschatz/pizza-express-tutorial#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
+}
