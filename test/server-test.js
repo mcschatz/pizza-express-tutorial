@@ -37,13 +37,13 @@ describe('Server', () => {
     it('should have a body with the name of the application', (done) => {
     var title = app.locals.title;
 
-    this.request.get('/', (error, response) => {
-      if (error) { done(error); }
-      assert(response.body.includes(title),
-             `"${response.body}" does not include "${title}".`);
-      done();
+      this.request.get('/', (error, response) => {
+        if (error) { done(error); }
+        assert(response.body.includes(title),
+               `"${response.body}" does not include "${title}".`);
+        done();
+      });
     });
-  });
   });
 
   describe('POST /pizzas', () => {
@@ -72,7 +72,18 @@ describe('Server', () => {
 
         done();
       });
-    })
+    });
+
+    it('should redurect the user to their new pizza', (done) => {
+      var payload = { pizza: fixtures.validPizza };
+
+      this.request.post('/pizzas', { form: payload }, (error, response) => {
+        if (error) { done(error); }
+        var newPizzaId = Object.keys(app.locals.pizzas)[0];
+        assert.equal(response.headers.location, '/pizzas/' + newPizzaId);
+        done();
+      });
+    });
   });
 
   describe('GET /pizzas/:id', () => {
