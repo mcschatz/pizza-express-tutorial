@@ -1,6 +1,7 @@
 const assert = require('assert');
 const request = require('request');
 const app = require('../server');
+const fixtures = require('./fixtures');
 
 describe('Server', () => {
 
@@ -25,7 +26,15 @@ describe('Server', () => {
     assert(app);
   });
 
-  it('should have a body with the name of the application', (done) => {
+  describe('GET /', () => {
+    it('should return a 200', (done) => {
+      this.request.get('/', (error, response) => {
+        assert.equal(response.statusCode, 200);
+        done();
+      });
+    });
+
+    it('should have a body with the name of the application', (done) => {
     var title = app.locals.title;
 
     this.request.get('/', (error, response) => {
@@ -35,17 +44,10 @@ describe('Server', () => {
       done();
     });
   });
-
-  describe('GET /', () => {
-    it('should return a 200', (done) => {
-      this.request.get('/', (error, response) => {
-        assert.equal(response.statusCode, 200);
-        done();
-      });
-    });
   });
 
   describe('POST /pizzas', () => {
+
     beforeEach(() => {
       app.locals.pizzas = {};
     });
@@ -59,14 +61,9 @@ describe('Server', () => {
     });
 
     it('should receive and store data', (done) => {
-      var validPizza = {
-        pizza: {
-          name: 'a vegan pizza',
-          toppings: ['mushrooms', 'onions', 'garlic', 'black olives']
-        }
-      };
+      var payload = { pizza: fixtures.validPizza };
 
-      this.request.post('/pizzas', { form: validPizza }, (error, response) => {
+      this.request.post('/pizzas', { form: payload }, (error, response) => {
         if (error) { done(error); }
 
         var pizzaCount = Object.keys(app.locals.pizzas).length;
