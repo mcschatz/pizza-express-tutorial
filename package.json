@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/mcschatz/pizza-express-tutorial#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
   },
   "devDependencies": {
     "mocha": "^2.3.4",
