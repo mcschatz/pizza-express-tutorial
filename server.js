@@ -19,6 +19,10 @@ app.get('/', (request, response) => {
   response.render('index');
 });
 
+app.get('/pizzas/:id', (request, response) => {
+  response.sendStatus(200);
+});
+
 app.post('/pizzas', (request, response) => {
   var id = generateID();
 
